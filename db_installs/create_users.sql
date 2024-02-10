@@ -23,7 +23,7 @@ FROM mysql.user;
 
 SELECT 'Completed adding rt_user' AS 'INSTALLATION DONE';
 
-SELECT 'DROPPING USER brt_user' AS 'INSTALLATION STARTER';
+SELECT 'DROPPING USER brt_user' AS 'INSTALLATION STARTED';
 
 DROP USER
 IF EXISTS 'brt_user'@'localhost';
@@ -32,7 +32,7 @@ SELECT 'ADDING USER brt_user' AS 'INSTALLATION PROGRESSING';
 
 CREATE USER
 IF NOT EXISTS 'brt_user'@'localhost'
-INDENTIFIED BY 'super_secret_pswd_911'
+IDENTIFIED BY 'super_secret_pswd_911'
 FAILED_LOGIN_ATTEMPTS 0
 PASSWORD_LOCK_TIME 0
 PASSWORD EXPIRE INTERVAL 90 DAY
@@ -45,6 +45,7 @@ GRANT ALL ON *.*
 TO 'brt_user'@'localhost';
 
 SELECT 'COMPLETED' AS 'INSTALLATION DONE';
+FLUSH PRIVILEGES;
 
 SELECT user, host, SHOW_db_priv, account_locked
 FROM mysql.USER;
